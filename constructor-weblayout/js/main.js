@@ -23,12 +23,31 @@ menuButton.addEventListener('click', function () {
 	menu.classList.toggle('header-active');
 })
 */
+const getElement = (tagName) => {
+	const element = document.createElement(tagName);
 
-const movieConstructor = (selector, optiins) => {
+	return element;
+};
+
+const createHeader = (param) => {
+	const header = getElement('header');
+
+	return header;
+};
+
+const movieConstructor = (selector, options) => {
 
 	const app = document.querySelector(selector);
 
-	app.textContent = "Привет мир"
+	if (options.header) {
+		app.append(createHeader(options.header));
+	}
+	
 };
 
-movieConstructor('.app');
+movieConstructor('.app', {
+	title: 'Ведьмак',
+	header: {
+		logo: ''
+	} 
+});
