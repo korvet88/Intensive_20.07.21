@@ -37,6 +37,13 @@ const createHeader = (param) => {
 	const container = getElement('div', ['container'])
 	const wrapper = getElement('div', ['header']);
 
+	if (param.header.logo) {
+		const logo = getElement('img', ['logo']);
+		logo.src = param.header.logo;
+		logo.alt = 'Логотип ' + param.title;
+		wrapper.append(logo);
+	}
+
 	header.append(container);
 	container.append(wrapper);
 
@@ -46,9 +53,10 @@ const createHeader = (param) => {
 const movieConstructor = (selector, options) => {
 
 	const app = document.querySelector(selector);
+	app.classList.add('body-app');
 
 	if (options.header) {
-		app.append(createHeader(options.header));
+		app.append(createHeader(options));
 	}
 	
 };
@@ -56,6 +64,6 @@ const movieConstructor = (selector, options) => {
 movieConstructor('.app', {
 	title: 'Ведьмак',
 	header: {
-		logo: ''
+		logo: 'witcher/logo.png'
 	} 
 });
