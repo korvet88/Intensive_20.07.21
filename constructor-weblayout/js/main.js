@@ -1,3 +1,4 @@
+/*
 new Swiper('.swiper-container', {
 	loop: true,
 	navigation: {
@@ -21,3 +22,5 @@ menuButton.addEventListener('click', function () {
 	menuButton.classList.toggle('menu-button-active');
 	menu.classList.toggle('header-active');
 })
+*/
+console.log('Hello World!')
