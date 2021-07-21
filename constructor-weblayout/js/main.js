@@ -23,4 +23,12 @@ menuButton.addEventListener('click', function () {
 	menu.classList.toggle('header-active');
 })
 */
-console.log('Hello World!')
+
+const movieConstructor = (selector, optiins) => {
+
+	const app = document.querySelector(selector);
+
+	app.textContent = "Привет мир"
+};
+
+movieConstructor('.app');
