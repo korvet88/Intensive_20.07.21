@@ -33,7 +33,12 @@ const getElement = (tagName, classNames) => {
 };
 
 const createHeader = (param) => {
-	const header = getElement('header', ['test', 'Hello', 'World!']);
+	const header = getElement('header');
+	const container = getElement('div', ['container'])
+	const wrapper = getElement('div', ['header']);
+
+	header.append(container);
+	container.append(wrapper);
 
 	return header;
 };
