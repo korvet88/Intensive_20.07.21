@@ -94,21 +94,53 @@ const createHeader = (param) => {
 	return header;
 };
 
+const createMain = ({ title,
+	 main: { genre, rating, description, trailer }}) => {
+	
+	const main = getElement('main');
+	const container = getElement('div', ['container']);
+	main.append(container);
+	const wrapper = getElement('div', ['main-content']);
+	container.append(wrapper);
+	const content = getElement('div', ['content']);
+	wrapper.append(content);
+
+	// <span class="genre animated fadeInRight">2019,фэнтези</span>
+	if (genre) {
+		const genreSpan = getElement('span',
+			['genre','animated','fadeInRight'],
+			{textContent: genre}
+		);
+
+		container.append(genreSpan);
+	}
+
+
+	return main;
+};
+
 const movieConstructor = (selector, options) => {
 
 	const app = document.querySelector(selector);
 	app.classList.add('body-app');
 
-	document.title = options.title;
+	app.style.backgroundImage = options.background ?
+		`url("${options.backgraund}")` : '';
+
+		document.title = options.title;
 
 	if (options.header) {
 		app.append(createHeader(options));
 	}
 	
+	if(options.main) {
+		app.append(createMain(options));
+	}
 };
 
 movieConstructor('.app', {
 	title: 'Ведьмак',
+	background: 'witcher/background.jpg',
 	header: {
 		logo: 'witcher/logo.png',
 		social: [
@@ -143,5 +175,11 @@ movieConstructor('.app', {
 			},
 		]
 
-	} 
+	},
+	main: {
+		genre: '2019 фэнтези',
+		rating: '8',
+		description: 'Ведьмак Геральт, мутант и убийца чудовищ, на своей верной лошади по кличке Плотва путешествует по Континенту. За тугой мешочек чеканных монет этот мужчина избавит вас от всякой настырной нечисти — хоть от чудищ болотных, оборотней и даже заколдованных принцесс.',
+		trailer: 'https://www.youtube.com/watch?v=P0oJqfLzZzQ" class="button animated fadeInRight youtube-modal',
+	}
 });
