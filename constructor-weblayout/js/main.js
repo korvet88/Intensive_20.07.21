@@ -33,6 +33,7 @@ const getElement = (tagName, classNames) => {
 };
 
 const createHeader = (param) => {
+<<<<<<< HEAD
 	const header = getElement('header');
 	const container = getElement('div', ['container'])
 	const wrapper = getElement('div', ['header']);
@@ -46,6 +47,9 @@ const createHeader = (param) => {
 
 	header.append(container);
 	container.append(wrapper);
+=======
+	const header = getElement('header', ['test', 'Hello', 'World!']);
+>>>>>>> parent of 75553ad (Добавлены conteiner, wrapper)
 
 	return header;
 };
