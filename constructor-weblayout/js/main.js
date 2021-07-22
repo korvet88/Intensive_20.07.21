@@ -56,10 +56,11 @@ const createHeader = (param) => {
 	if (param.header.menu) {
 		const menuWrapper = getElement('nav', ['menu-list']);
 		const allMenu = param.header.menu.map(item => {
-			const menuLink = getElement('a', ['menu-link']);
-			menuLink.append(getElement('a', [], item.title));
-
-			menuLink.href = item.link;
+			const menuLink = getElement('a', ['menu-link'], {
+				href: item.link,
+				textContent: item.title,
+			});
+			
 
 			return menuLink;
 		});
@@ -97,6 +98,8 @@ const movieConstructor = (selector, options) => {
 
 	const app = document.querySelector(selector);
 	app.classList.add('body-app');
+
+	document.title = options.title;
 
 	if (options.header) {
 		app.append(createHeader(options));
