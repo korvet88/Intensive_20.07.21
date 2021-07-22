@@ -144,7 +144,7 @@ const movieConstructor = (selector, options) => {
 	app.classList.add('body-app');
 
 	app.style.backgroundImage = options.background ?
-		`url("${options.backgraund}")` : '';
+		`url("${options.background}")` : '';
 
 		document.title = options.title;
 
