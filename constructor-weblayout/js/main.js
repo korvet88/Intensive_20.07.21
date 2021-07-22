@@ -46,11 +46,13 @@ const createHeader = (param) => {
 	const wrapper = getElement('div', ['header']);
 
 	if (param.header.logo) {
-		const logo = getElement('img', ['logo']);
-		logo.src = param.header.logo;
-		logo.alt = 'Логотип ' + param.title;
+		const logo = getElement('img', ['logo'], {
+			src : param.header.logo,
+			alt : 'Логотип ' + param.title,
+		});
 		wrapper.append(logo);
 	}
+
 	if (param.header.social) {
 		const socialWrapper = getElement('div', ['social']);
 		const allSocial = param.header.social.map(item => {
