@@ -65,5 +65,10 @@ movieConstructor('.app', {
 	title: 'Ведьмак',
 	header: {
 		logo: 'witcher/logo.png'
+		social: [
+			{},
+			{},
+			{},
+		]
 	} 
 });
