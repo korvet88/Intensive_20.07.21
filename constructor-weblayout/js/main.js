@@ -220,6 +220,23 @@ const createMain = ({ title,
 
 		container.append(sliderBlock);
 
+		new Swiper(swiperBlock, {
+			loop: true,
+			navigation: {
+				nextEl: arrow,
+			},
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 20
+				},
+				541: {
+					slidesPerView: 2,
+					spaceBetween: 40
+				}
+			}
+		});
+
 	}
 
 	return main;
