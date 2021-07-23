@@ -40,22 +40,22 @@ const getElement = (tagName, classNames, attributes) => {
 	return element;
 };
 
-const createHeader = (param) => {
+const createHeader = ({ title, header: { logo, menu, social}}) => {
 	const header = getElement('header');
 	const container = getElement('div', ['container']);
 	const wrapper = getElement('div', ['header']);
 
-	if (param.header.logo) {
-		const logo = getElement('img', ['logo'], {
-			src : param.header.logo,
-			alt : 'Логотип ' + param.title,
+	if (logo) {
+		const logoElem = getElement('img', ['logo'], {
+			src : logo,
+			alt : 'Логотип ' + title,
 		});
-		wrapper.append(logo);
+		wrapper.append(logoElem);
 	}
 
-	if (param.header.menu) {
+	if (menu) {
 		const menuWrapper = getElement('nav', ['menu-list']);
-		const allMenu = param.header.menu.map(item => {
+		const allMenu = menu.map(item => {
 			const menuLink = getElement('a', ['menu-link'], {
 				href: item.link,
 				textContent: item.title,
@@ -69,9 +69,9 @@ const createHeader = (param) => {
 		wrapper.append(menuWrapper);
 	}
 
-	if (param.header.social) {
+	if (social) {
 		const socialWrapper = getElement('div', ['social']);
-		const allSocial = param.header.social.map(item => {
+		const allSocial = social.map(item => {
 			const socialLink = getElement('a', ['social-link']);
 			socialLink.append(getElement('img', [], {
 				src: item.image,
@@ -85,6 +85,15 @@ const createHeader = (param) => {
 		console.log(allSocial);
 		socialWrapper.append(...allSocial);
 		wrapper.append(socialWrapper);
+	}
+
+	if (menu) {
+		const menuBtn = getElement('button', ['menu-button']);
+		menuBtn.addEventListener('click', () => {
+			menuBtn.classList.toggle('menu-button-active');
+			wrapper.classList.toggle('header-active');
+		});
+		container.append(menuBtn)
 	}
 
 	
@@ -183,6 +192,20 @@ const movieConstructor = (selector, options) => {
 	const app = document.querySelector(selector);
 	app.classList.add('body-app');
 
+	if (options.favicon) {
+		const index = options.favicon.lastIndexOf('.');
+		const type = options.favicon.substring(index + 1);
+		
+
+		const favicon = getElement('link', null, {
+			rel: 'icon',
+			href: options.favicon,
+			type: 'image/' +  (type === 'svg' ? 'svg-xml' : type)
+		});
+
+		document.head.append(favicon)
+	}
+
 	app.style.backgroundImage = options.background ?
 		`url("${options.background}")` : '';
 
@@ -200,6 +223,7 @@ const movieConstructor = (selector, options) => {
 movieConstructor('.app', {
 	title: 'Ведьмак',
 	background: 'witcher/background.jpg',
+	favicon: 'witcher/logo.png',
 	header: {
 		logo: 'witcher/logo.png',
 		social: [
