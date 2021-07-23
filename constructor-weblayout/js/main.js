@@ -130,10 +130,50 @@ const createMain = ({ title,
 		}
 
 		ratingBlock.append(ratingStars, ratingNumber);
-		content.append(ratingBlock);
-
-			
+		content.append(ratingBlock);			
 	}
+
+	content.append(getElement('h1',
+	['main-title', 'animated', 'fadeInRight'], 
+	{textContent: title}
+	));
+
+	if (description) {
+		content.append(getElement('p', 
+			['main-description', 'animated', 'fadeInRight'],
+			{textContent: description},
+		));
+	}
+
+	if (trailer) {
+		const youtubeLink = getElement('a', 
+			['button', 'animated', 'fadeInRight', 'youtube-modal'],
+			{
+				href: trailer,
+				textContent: 'Смотреть терйлер',	
+			}
+		);
+		
+		const youtubeImgLink = getElement('a', ['play', 'youtube-modal'],
+			{
+				href: trailer,
+				ariaLabel: 'Смотреть трейлер',
+			}
+		);
+
+		const iconPlay = getElement('img', ['play-img'],
+			{
+				src: 'img/play.svg',
+				alt: '',
+				ariaHidden: true,
+			}
+		);
+
+		content.append(youtubeLink);
+		youtubeImgLink.append(iconPlay);
+		wrapper.append(youtubeImgLink);
+	}
+
 
 	return main;
 };
