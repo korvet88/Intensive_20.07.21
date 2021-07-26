@@ -35,7 +35,10 @@ const getElement = (tagName, classNames) => {
 }; 
 
 const createHeader = (param) => {   
-	const header = getElement('header', ['text', 'hello', 'world!']);
+	const header = getElement('header');
+	const conteiner = getElement('div', ['conteiner']);
+
+	header.append(conteiner);
 
 	return header;
 
@@ -46,8 +49,7 @@ const movieConstructor = (selector, options) => {
 	const app = document.querySelector(selector);
 	
 	if (options.header) {
-		const header = createHeader();
-		app.append(header);
+		app.append(createHeader(options.header));
 	}
 };
 
