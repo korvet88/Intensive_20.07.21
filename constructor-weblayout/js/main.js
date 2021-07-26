@@ -23,14 +23,19 @@ menuButton.addEventListener('click', function () {
 	menu.classList.toggle('header-active');
 })
 */
-const getElement = (tagName) => {
+const getElement = (tagName, classNames) => {
 	const element = document.createElement(tagName);
 
+	if (classNames) {
+		element.classList.add(...classNames);
+
+	}
+
 	return element;
-};
+}; 
 
 const createHeader = (param) => {   
-	const header = getElement('header');
+	const header = getElement('header', ['text', 'hello', 'world!']);
 
 	return header;
 
@@ -40,7 +45,7 @@ const movieConstructor = (selector, options) => {
 
 	const app = document.querySelector(selector);
 	
-	if (options.feader) {
+	if (options.header) {
 		const header = createHeader();
 		app.append(header);
 	}
